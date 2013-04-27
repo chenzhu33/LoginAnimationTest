@@ -26,10 +26,11 @@ public final class R {
         public static final int banner=0x7f080004;
         public static final int big_c=0x7f080005;
         public static final int bottom=0x7f080007;
+        public static final int bottom2=0x7f080009;
         public static final int commit=0x7f080003;
         public static final int login=0x7f080006;
         public static final int login_info=0x7f080000;
-        public static final int menu_settings=0x7f080009;
+        public static final int menu_settings=0x7f08000a;
         public static final int password=0x7f080002;
         public static final int register=0x7f080008;
         public static final int usrname=0x7f080001;
