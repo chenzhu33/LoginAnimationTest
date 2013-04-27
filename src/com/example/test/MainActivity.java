@@ -13,29 +13,30 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-	private ImageView registerImage;
-	private ImageView loginImage;
+	private final static int ANIMATION_DURATION = 500;
+	
+	private ImageView registerButton;
+	private ImageView loginButton;
+	private LinearLayout loginLayoutWhole;
+	private LinearLayout registerLayoutWhole;
+	private LinearLayout loginLayoutInputBox;
+	private LinearLayout registerLayoutInputBox;
+	private LinearLayout layoutLogin;
+	private LinearLayout layoutRegister;
+	private LinearLayout layoutFoot;
+	private TextView spaceBannerLogin;
+	private TextView spaceFootLogin;
+	private TextView spaceBannerRegister;
+	private TextView spaceFootRegister;
+
+	private int distanceLogin;
+	private int distance2Login;
+	private int distanceRegister;
+	private int distance2Register;
+
 	private TranslateAnimation scrollUp;
 	private TranslateAnimation scrollDown;
-	private LinearLayout loginWhole;
-	private LinearLayout registerWhole;
-	private LinearLayout loginInfo;
-	private LinearLayout registerInfo;
-	private LinearLayout lbanner;
-	private LinearLayout lbottom;
-	private LinearLayout lbottom2;
-
-	private TextView space1Login;
-	private TextView space2Login;
-
-	protected int distanceRegister;
-	protected int distance2Register;
-	protected int distanceLogin;
-	protected int distance2Login;
-	private TextView space1Register;
-	private TextView space2Register;
-
-	/** Called when the activity is first created. */
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,102 +44,102 @@ public class MainActivity extends Activity {
 
 		setContentView(R.layout.activity_main);
 
-		registerImage = (ImageView) findViewById(R.id.register);
-		loginImage = (ImageView) findViewById(R.id.login);
+		registerButton = (ImageView) findViewById(R.id.register);
+		loginButton = (ImageView) findViewById(R.id.login);
 
-		loginInfo = (LinearLayout) findViewById(R.id.login_info);
-		registerInfo = (LinearLayout) findViewById(R.id.register_info);
-		loginWhole = (LinearLayout) findViewById(R.id.login_whole);
-		registerWhole = (LinearLayout) findViewById(R.id.register_whole);
+		loginLayoutInputBox = (LinearLayout) findViewById(R.id.login_info);
+		registerLayoutInputBox = (LinearLayout) findViewById(R.id.register_info);
+		loginLayoutWhole = (LinearLayout) findViewById(R.id.login_whole);
+		registerLayoutWhole = (LinearLayout) findViewById(R.id.register_whole);
 
-		lbanner = (LinearLayout) findViewById(R.id.banner);
-		lbottom = (LinearLayout) findViewById(R.id.bottom);
-		lbottom2 = (LinearLayout) findViewById(R.id.bottom2);
+		layoutLogin = (LinearLayout) findViewById(R.id.banner);
+		layoutRegister = (LinearLayout) findViewById(R.id.bottom);
+		layoutFoot = (LinearLayout) findViewById(R.id.bottom2);
 
-		space1Login = (TextView) findViewById(R.id.space1_l);
-		space2Login = (TextView) findViewById(R.id.space2_l);
-		space1Register = (TextView) findViewById(R.id.space1_r);
-		space2Register = (TextView) findViewById(R.id.space2_r);
+		spaceBannerLogin = (TextView) findViewById(R.id.space1_l);
+		spaceFootLogin = (TextView) findViewById(R.id.space2_l);
+		spaceBannerRegister = (TextView) findViewById(R.id.space1_r);
+		spaceFootRegister = (TextView) findViewById(R.id.space2_r);
 
-		loginImage.setOnClickListener(new OnClickListener() {
+		loginButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				registerWhole.setVisibility(View.INVISIBLE);
-				loginWhole.setVisibility(View.VISIBLE);
+				registerLayoutWhole.setVisibility(View.INVISIBLE);
+				loginLayoutWhole.setVisibility(View.VISIBLE);
 
-				int infoTop = loginInfo.getTop();
-				int bannerBottom = lbanner.getBottom();
+				int infoTop = loginLayoutInputBox.getTop();
+				int bannerBottom = layoutLogin.getBottom();
 				distanceLogin = bannerBottom - infoTop;
 
-				int infoBottom = loginInfo.getBottom();
-				int lbottomTop = lbottom.getTop();
+				int infoBottom = loginLayoutInputBox.getBottom();
+				int lbottomTop = layoutRegister.getTop();
 				distance2Login = infoBottom - lbottomTop;
 
 				scrollUp = new TranslateAnimation(0, 0, 0, -distanceLogin);
-				scrollUp.setDuration(600);
+				scrollUp.setDuration(ANIMATION_DURATION);
 				scrollUp.setFillAfter(true);
 
 				scrollDown = new TranslateAnimation(0, 0, 0, distance2Login);
-				scrollDown.setDuration(600);
+				scrollDown.setDuration(ANIMATION_DURATION);
 				scrollDown.setFillAfter(true);
 
-				lbanner.startAnimation(scrollUp);
-				lbottom.startAnimation(scrollDown);
-				lbottom2.startAnimation(scrollDown);
+				layoutLogin.startAnimation(scrollUp);
+				layoutRegister.startAnimation(scrollDown);
+				layoutFoot.startAnimation(scrollDown);
 
-				loginImage.setClickable(false);
-				registerImage.setClickable(false);
+				loginButton.setClickable(false);
+				registerButton.setClickable(false);
 			}
 		});
 
-		registerImage.setOnClickListener(new OnClickListener() {
+		registerButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-				registerWhole.setVisibility(View.VISIBLE);
-				loginWhole.setVisibility(View.INVISIBLE);
+				registerLayoutWhole.setVisibility(View.VISIBLE);
+				loginLayoutWhole.setVisibility(View.INVISIBLE);
 
-				int infoTop = registerInfo.getTop();
-				int lbottomBottom = lbottom.getBottom();
+				int infoTop = registerLayoutInputBox.getTop();
+				int lbottomBottom = layoutRegister.getBottom();
 				distanceRegister = lbottomBottom - infoTop;
 
-				int infoBottom = registerInfo.getBottom();
-				int lbottom2Top = lbottom2.getTop();
+				int infoBottom = registerLayoutInputBox.getBottom();
+				int lbottom2Top = layoutFoot.getTop();
 				distance2Register = infoBottom - lbottom2Top;
 				if (distance2Register < 0)
 					distance2Register = 0;
 
 				scrollUp = new TranslateAnimation(0, 0, 0, -distanceRegister);
-				scrollUp.setDuration(600);
+				scrollUp.setDuration(ANIMATION_DURATION);
 				scrollUp.setFillAfter(true);
 
 				scrollDown = new TranslateAnimation(0, 0, 0, distance2Register);
-				scrollDown.setDuration(600);
+				scrollDown.setDuration(ANIMATION_DURATION);
 				scrollDown.setFillAfter(true);
 
-				lbanner.startAnimation(scrollUp);
-				lbottom.startAnimation(scrollUp);
-				lbottom2.startAnimation(scrollDown);
+				layoutLogin.startAnimation(scrollUp);
+				layoutRegister.startAnimation(scrollUp);
+				layoutFoot.startAnimation(scrollDown);
 
-				loginImage.setClickable(false);
-				registerImage.setClickable(false);
+				loginButton.setClickable(false);
+				registerButton.setClickable(false);
 			}
 		});
 
-		space1Login.setOnClickListener(new OnClickListener() {
+		spaceBannerLogin.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 
 				scrollUp = new TranslateAnimation(0, 0, -distanceLogin, 0);
-				scrollUp.setDuration(600);
+				scrollUp.setDuration(ANIMATION_DURATION);
 				scrollUp.setFillAfter(true);
 
 				scrollDown = new TranslateAnimation(0, 0, distance2Login, 0);
-				scrollDown.setDuration(600);
+				scrollDown.setDuration(ANIMATION_DURATION);
 				scrollDown.setFillAfter(true);
 
-				lbanner.startAnimation(scrollUp);
-				lbottom.startAnimation(scrollDown);
-				lbottom2.startAnimation(scrollDown);
+				layoutLogin.startAnimation(scrollUp);
+				layoutRegister.startAnimation(scrollDown);
+				layoutFoot.startAnimation(scrollDown);
 
 				scrollDown.setAnimationListener(new AnimationListener() {
 
@@ -151,28 +152,28 @@ public class MainActivity extends Activity {
 					}
 
 					public void onAnimationEnd(Animation animation) {
-						loginWhole.setVisibility(View.INVISIBLE);
-						loginImage.setClickable(true);
-						registerImage.setClickable(true);
+						loginLayoutWhole.setVisibility(View.INVISIBLE);
+						loginButton.setClickable(true);
+						registerButton.setClickable(true);
 					}
 				});
 			}
 		});
 
-		space2Login.setOnClickListener(new OnClickListener() {
+		spaceFootLogin.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				scrollUp = new TranslateAnimation(0, 0, -distanceLogin, 0);
-				scrollUp.setDuration(600);
+				scrollUp.setDuration(ANIMATION_DURATION);
 				scrollUp.setFillAfter(true);
 
 				scrollDown = new TranslateAnimation(0, 0, distance2Login, 0);
-				scrollDown.setDuration(600);
+				scrollDown.setDuration(ANIMATION_DURATION);
 				scrollDown.setFillAfter(true);
 
-				lbanner.startAnimation(scrollUp);
-				lbottom.startAnimation(scrollDown);
-				lbottom2.startAnimation(scrollDown);
+				layoutLogin.startAnimation(scrollUp);
+				layoutRegister.startAnimation(scrollDown);
+				layoutFoot.startAnimation(scrollDown);
 
 				scrollDown.setAnimationListener(new AnimationListener() {
 
@@ -185,28 +186,28 @@ public class MainActivity extends Activity {
 					}
 
 					public void onAnimationEnd(Animation animation) {
-						loginWhole.setVisibility(View.INVISIBLE);
-						loginImage.setClickable(true);
-						registerImage.setClickable(true);
+						loginLayoutWhole.setVisibility(View.INVISIBLE);
+						loginButton.setClickable(true);
+						registerButton.setClickable(true);
 					}
 				});
 			}
 		});
 
-		space2Register.setOnClickListener(new OnClickListener() {
+		spaceFootRegister.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				scrollUp = new TranslateAnimation(0, 0, -distanceRegister, 0);
-				scrollUp.setDuration(600);
+				scrollUp.setDuration(ANIMATION_DURATION);
 				scrollUp.setFillAfter(true);
 
 				scrollDown = new TranslateAnimation(0, 0, distance2Register, 0);
-				scrollDown.setDuration(600);
+				scrollDown.setDuration(ANIMATION_DURATION);
 				scrollDown.setFillAfter(true);
 
-				lbanner.startAnimation(scrollUp);
-				lbottom.startAnimation(scrollUp);
-				lbottom2.startAnimation(scrollDown);
+				layoutLogin.startAnimation(scrollUp);
+				layoutRegister.startAnimation(scrollUp);
+				layoutFoot.startAnimation(scrollDown);
 
 				scrollDown.setAnimationListener(new AnimationListener() {
 
@@ -219,28 +220,28 @@ public class MainActivity extends Activity {
 					}
 
 					public void onAnimationEnd(Animation animation) {
-						registerWhole.setVisibility(View.INVISIBLE);
-						loginImage.setClickable(true);
-						registerImage.setClickable(true);
+						registerLayoutWhole.setVisibility(View.INVISIBLE);
+						loginButton.setClickable(true);
+						registerButton.setClickable(true);
 					}
 				});
 			}
 		});
 
-		space1Register.setOnClickListener(new OnClickListener() {
+		spaceBannerRegister.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				scrollUp = new TranslateAnimation(0, 0, -distanceRegister, 0);
-				scrollUp.setDuration(600);
+				scrollUp.setDuration(ANIMATION_DURATION);
 				scrollUp.setFillAfter(true);
 
 				scrollDown = new TranslateAnimation(0, 0, distance2Register, 0);
-				scrollDown.setDuration(600);
+				scrollDown.setDuration(ANIMATION_DURATION);
 				scrollDown.setFillAfter(true);
 
-				lbanner.startAnimation(scrollUp);
-				lbottom.startAnimation(scrollUp);
-				lbottom2.startAnimation(scrollDown);
+				layoutLogin.startAnimation(scrollUp);
+				layoutRegister.startAnimation(scrollUp);
+				layoutFoot.startAnimation(scrollDown);
 
 				scrollDown.setAnimationListener(new AnimationListener() {
 
@@ -253,9 +254,9 @@ public class MainActivity extends Activity {
 					}
 
 					public void onAnimationEnd(Animation animation) {
-						registerWhole.setVisibility(View.INVISIBLE);
-						loginImage.setClickable(true);
-						registerImage.setClickable(true);
+						registerLayoutWhole.setVisibility(View.INVISIBLE);
+						loginButton.setClickable(true);
+						registerButton.setClickable(true);
 					}
 				});
 			}
