@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.Window;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.Interpolator;
 import android.view.animation.Animation.AnimationListener;
+import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,6 +41,8 @@ public class MainActivity extends Activity {
 	private TranslateAnimation scrollUp;
 	private TranslateAnimation scrollDown;
 	
+	private LinearLayout mainBackground;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,6 +67,36 @@ public class MainActivity extends Activity {
 		spaceBannerRegister = (TextView) findViewById(R.id.space1_r);
 		spaceFootRegister = (TextView) findViewById(R.id.space2_r);
 
+		mainBackground = (LinearLayout)findViewById(R.id.main_bg);
+		
+		loginButton.setOnLongClickListener(new OnLongClickListener() {
+			
+			public boolean onLongClick(View v) {
+				registerLayoutWhole.setVisibility(View.GONE);
+				loginLayoutWhole.setVisibility(View.GONE);
+				loginLayoutInputBox.setVisibility(View.GONE);
+				registerLayoutInputBox.setVisibility(View.GONE);
+				mainBackground.setVisibility(View.VISIBLE);
+				
+				scrollUp = new TranslateAnimation(0, 0, 0, -800);
+				scrollUp.setDuration(ANIMATION_DURATION);
+				scrollUp.setFillAfter(true);
+
+				scrollDown = new TranslateAnimation(0, 0, 0, 800);
+				scrollDown.setDuration(ANIMATION_DURATION);
+				scrollDown.setFillAfter(true);
+
+				layoutLogin.startAnimation(scrollUp);
+				layoutRegister.startAnimation(scrollDown);
+				layoutFoot.startAnimation(scrollDown);
+
+				loginButton.setClickable(false);
+				registerButton.setClickable(false);
+						
+				return true;
+			}
+		});
+		
 		loginButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -200,11 +236,9 @@ public class MainActivity extends Activity {
 				scrollUp = new TranslateAnimation(0, 0, -distanceRegister, 0);
 				scrollUp.setDuration(ANIMATION_DURATION);
 				scrollUp.setFillAfter(true);
-
 				scrollDown = new TranslateAnimation(0, 0, distance2Register, 0);
 				scrollDown.setDuration(ANIMATION_DURATION);
 				scrollDown.setFillAfter(true);
-
 				layoutLogin.startAnimation(scrollUp);
 				layoutRegister.startAnimation(scrollUp);
 				layoutFoot.startAnimation(scrollDown);

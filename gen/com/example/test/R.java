@@ -23,27 +23,29 @@ public final class R {
         public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
-        public static final int banner=0x7f08000e;
-        public static final int big_c=0x7f08000f;
-        public static final int bottom=0x7f080011;
-        public static final int bottom2=0x7f080013;
-        public static final int commit=0x7f080005;
-        public static final int email_r=0x7f08000c;
-        public static final int login=0x7f080010;
-        public static final int login_info=0x7f080002;
-        public static final int login_whole=0x7f080000;
-        public static final int menu_settings=0x7f080014;
-        public static final int password_l=0x7f080004;
-        public static final int password_r=0x7f08000b;
-        public static final int register=0x7f080012;
-        public static final int register_info=0x7f080009;
-        public static final int register_whole=0x7f080007;
-        public static final int space1_l=0x7f080001;
-        public static final int space1_r=0x7f080008;
-        public static final int space2_l=0x7f080006;
-        public static final int space2_r=0x7f08000d;
-        public static final int usrname_l=0x7f080003;
-        public static final int usrname_r=0x7f08000a;
+        public static final int banner=0x7f080010;
+        public static final int big_c=0x7f080011;
+        public static final int bottom=0x7f080013;
+        public static final int bottom2=0x7f080015;
+        public static final int commit=0x7f080007;
+        public static final int email_r=0x7f08000e;
+        public static final int login=0x7f080012;
+        public static final int login_info=0x7f080004;
+        public static final int login_whole=0x7f080002;
+        public static final int main_bg=0x7f080000;
+        public static final int menu_settings=0x7f080016;
+        public static final int password_l=0x7f080006;
+        public static final int password_r=0x7f08000d;
+        public static final int register=0x7f080014;
+        public static final int register_info=0x7f08000b;
+        public static final int register_whole=0x7f080009;
+        public static final int space1_l=0x7f080003;
+        public static final int space1_r=0x7f08000a;
+        public static final int space2_l=0x7f080008;
+        public static final int space2_r=0x7f08000f;
+        public static final int usrname_l=0x7f080005;
+        public static final int usrname_r=0x7f08000c;
+        public static final int word_colorwork=0x7f080001;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
